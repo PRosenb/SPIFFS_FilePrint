@@ -1,25 +1,20 @@
-# Arduino PIFFS FilePrint Library #
-https://github.com/PRosenb/PIFFS_FilePrint
+# Arduino SPIFFS FilePrint Library #
+https://github.com/PRosenb/SPIFFS_FilePrint
 
-PIFFS FilePrint is a lightweight, simple library for rolling file print to log to SPIFFS.  
+SPIFFS FilePrint is a lightweight, simple library for rolling file print to log to SPIFFS.  
 
 ## Features ##
 - Easy to use
+- Supports rolling files
+- Lightweight
 
 ## Installation ##
-- The library can be installed directly in the [Arduino Software (IDE)](https://www.arduino.cc/en/Main/Software) as follows:
-  - Menu Sketch->Include Library->Manage Libraries...
-  - On top right in "Filter your search..." type: PIFFS FilePrint
-  - The PIFFS FilePrint library will show
-  - Click on it and then click "Install"
-  - For more details see manual [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries#toc3)
-- If you do not use the [Arduino Software (IDE)](https://www.arduino.cc/en/Main/Software):
-  - [Download the latest version](https://github.com/PRosenb/PIFFS_FilePrint/releases/latest)
+  - [Download the latest version](https://github.com/PRosenb/SPIFFS_FilePrint/releases/latest)
   - Uncompress the downloaded file
-  - This will result in a folder containing all the files for the library. The folder name includes the version: **PIFFS_FilePrint-x.y.z**
-  - Rename the folder to **PIFFS_FilePrint**
+  - This will result in a folder containing all the files for the library. The folder name includes the version: **SPIFFS_FilePrint-x.y.z**
+  - Rename the folder to **SPIFFS_FilePrint**
   - Copy the renamed folder to your **libraries** folder
-  - From time to time, check on https://github.com/PRosenb/PIFFS_FilePrint if updates become available
+  - From time to time, check on https://github.com/PRosenb/SPIFFS_FilePrint if updates become available
 
 ## Getting Started ##
 Simple Logger:
@@ -50,11 +45,11 @@ void loop() {
 
 ## Examples ##
 The following example sketches are included in the **PIFFS FilePrint** library.  
-You can also see them in the [Arduino Software (IDE)](https://www.arduino.cc/en/Main/Software) in menu File->Examples->PIFFS FilePrint.  
+You can also see them in the [Arduino Software (IDE)](https://www.arduino.cc/en/Main/Software) in menu File->Examples->SPIFFS FilePrint.  
 
-- [**Simple Logging**](https://github.com/PRosenb/PIFFS_FilePrint/blob/master/examples/LogWithArduinoLog/LogWithArduinoLog.ino): Simple example how to use this library.  
-- [**Print to file and console**](https://github.com/PRosenb/PIFFS_FilePrint/blob/master/examples/PrintFileToConsole/PrintFileToConsole.ino): Print to the console and to a file at the same time and show the content of the logfile.   
-- [**Log with ArduinoLog**](https://github.com/PRosenb/PIFFS_FilePrint/blob/master/examples/LogWithArduinoLog/LogWithArduinoLog.ino): Use ArduinoLog and configure it to log to a log file. Show the content of the logfile afterwards.  
+- [**Simple Logging**](https://github.com/PRosenb/SPIFFS_FilePrint/blob/master/examples/LogWithArduinoLog/LogWithArduinoLog.ino): Simple example how to use this library.  
+- [**Print to file and console**](https://github.com/PRosenb/SPIFFS_FilePrint/blob/master/examples/PrintFileToConsole/PrintFileToConsole.ino): Print to the console and to a file at the same time and show the content of the logfile.   
+- [**Log with ArduinoLog**](https://github.com/PRosenb/SPIFFS_FilePrint/blob/master/examples/LogWithArduinoLog/LogWithArduinoLog.ino): Use ArduinoLog and configure it to log to a log file. Show the content of the logfile afterwards.  
 
 ## Contributions ##
 Enhancements and improvements are welcome.
