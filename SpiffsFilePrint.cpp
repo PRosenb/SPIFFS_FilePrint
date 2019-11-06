@@ -1,4 +1,3 @@
-
 #include "SpiffsFilePrint.h"
 
 SpiffsFilePrint::SpiffsFilePrint(Print *const alsoPrintTo)
