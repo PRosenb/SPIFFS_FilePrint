@@ -12,7 +12,6 @@ SpiffsFilePrint	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-run	KEYWORD2
 SpiffsFilePrint	KEYWORD2
 open	KEYWORD2
 close	KEYWORD2

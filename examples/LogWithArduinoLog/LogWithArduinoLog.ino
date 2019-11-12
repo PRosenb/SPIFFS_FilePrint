@@ -1,5 +1,5 @@
-#include <ArduinoLog.h>
-#include <SpiffsFilePrint.h>
+#include <ArduinoLog.h>       // https://github.com/thijse/Arduino-Log
+#include <SpiffsFilePrint.h>  // https://github.com/PRosenb/SPIFFS_FilePrint
 
 void printTimestamp(Print* _logOutput) {
     struct tm timeinfo;
