@@ -60,7 +60,7 @@ void SpiffsFilePrint::checkSizeAndAdjustCurrentFilename() {
     for (int i = 0; i < filesCount; i++) {
         String filename = assembleCurrentFilename(i);
         if (SPIFFS.exists(filename)) {
-            File currentFile = SPIFFS.open(filename);
+            File currentFile = SPIFFS.open(filename, FILE_READ);
             size_t size = 0;
             if (currentFile) {
                 size = currentFile.size();

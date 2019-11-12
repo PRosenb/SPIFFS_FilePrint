@@ -2,7 +2,16 @@
 #define SPIFFS_FILE_PRINT_H
 
 #include <Arduino.h>
+#if defined(ESP32)
 #include <SPIFFS.h>
+#elif defined(ESP8266)
+#include <FS.h>
+#define FILE_WRITE "w"
+#define FILE_APPEND "a"
+#define FILE_READ "r"
+#else
+#error "Not supported CPU"
+#endif
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 1024

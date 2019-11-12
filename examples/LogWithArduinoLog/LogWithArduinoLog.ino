@@ -2,12 +2,15 @@
 #include <SpiffsFilePrint.h>  // https://github.com/PRosenb/SPIFFS_FilePrint
 
 void printTimestamp(Print* _logOutput) {
+#if defined(ESP32)
     struct tm timeinfo;
     if (getLocalTime(&timeinfo, 0)) {
         char timeStringBuff[50];  // 50 chars should be enough
         strftime(timeStringBuff, sizeof(timeStringBuff), "%F %T ", &timeinfo);
         _logOutput->print(timeStringBuff);
-    } else {
+    } else
+#endif
+    {
         char c[12];
         sprintf(c, "%10lu ", millis());
         _logOutput->print(c);
@@ -16,6 +19,7 @@ void printTimestamp(Print* _logOutput) {
 
 void printNewline(Print* _logOutput) { _logOutput->print('\n'); }
 
+#if defined(ESP32)
 void listRootDir() {
     File root = SPIFFS.open("/");
     File file = root.openNextFile();
@@ -29,6 +33,23 @@ void listRootDir() {
     }
     Serial.println("------------");
 }
+#elif defined(ESP8266)
+void listRootDir() {
+    Dir dir = SPIFFS.openDir("/");
+    while (dir.next()) {
+        if (dir.fileSize()) {
+            File file = dir.openFile(FILE_READ);
+            Serial.print(file.name());
+            Serial.print(" ");
+            Serial.print(file.size());
+            Serial.println(" Bytes");
+        }
+    }
+    Serial.println("------------");
+}
+#else
+#error "Not supported CPU"
+#endif
 
 void printFileToConsole(String filename) {
     Serial.println(filename);
