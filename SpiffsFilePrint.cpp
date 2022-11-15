@@ -44,8 +44,10 @@ size_t SpiffsFilePrint::write(uint8_t n) {
     buf[nextWritePos++] = c;
     if (nextWritePos == BUFFER_SIZE - 2 || c == '\n') {
         buf[nextWritePos] = '\0';
-        file.print(buf);
         nextWritePos = 0;
+        interrupts();
+        // file.print() must be called when interrupts are enabled
+        file.print(buf);
         // flush does not work reliably, only close and reopen does
         file.close();
         checkSizeAndAdjustCurrentFilename();
