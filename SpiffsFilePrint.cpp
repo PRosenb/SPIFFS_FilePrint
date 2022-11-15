@@ -31,8 +31,24 @@ void SpiffsFilePrint::open() {
 
 void SpiffsFilePrint::close() {
     if (file) {
+        flush();
         file.close();
     }
+}
+
+void SpiffsFilePrint::flush() {
+    noInterrupts();
+    char fileWriteBuf[nextWritePos];
+    memcpy(&fileWriteBuf, &buf, nextWritePos + 1);
+    fileWriteBuf[nextWritePos] = '\0';
+    nextWritePos = 0;
+    interrupts();
+    // file.print() must be called when interrupts are enabled
+    file.print(fileWriteBuf);
+    // flush does not work reliably, only close and reopen does
+    file.close();
+    checkSizeAndAdjustCurrentFilename();
+    file = SPIFFS.open(currentFilename, FILE_APPEND);
 }
 
 size_t SpiffsFilePrint::write(uint8_t n) {
@@ -43,15 +59,8 @@ size_t SpiffsFilePrint::write(uint8_t n) {
     noInterrupts();
     buf[nextWritePos++] = c;
     if (nextWritePos == BUFFER_SIZE - 2 || c == '\n') {
-        buf[nextWritePos] = '\0';
-        nextWritePos = 0;
         interrupts();
-        // file.print() must be called when interrupts are enabled
-        file.print(buf);
-        // flush does not work reliably, only close and reopen does
-        file.close();
-        checkSizeAndAdjustCurrentFilename();
-        file = SPIFFS.open(currentFilename, FILE_APPEND);
+        flush();
     }
     interrupts();
     return 1;

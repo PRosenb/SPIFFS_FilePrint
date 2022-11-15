@@ -45,6 +45,7 @@ class SpiffsFilePrint : public Print {
     virtual ~SpiffsFilePrint();
     void open();
     void close();
+    virtual void flush();
 
    protected:
     virtual size_t write(uint8_t n);
