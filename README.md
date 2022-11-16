@@ -31,6 +31,7 @@ void setup() {
     // SPIFFS.format();
 
     SpiffsFilePrint filePrint("/logfile", 2, 500, &Serial);
+    // skip open() or call close() if you want to deactivate writing to files
     filePrint.open();
 
     filePrint.print("Millis since start: ");
@@ -57,7 +58,7 @@ Enhancements and improvements are welcome.
 ## License ##
 ```
 Arduino PIFFS FilePrint Library
-Copyright (c) 2019 Peter Rosenberg (https://github.com/PRosenb).
+Copyright (c) 2022 Peter Rosenberg (https://github.com/PRosenb).
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
