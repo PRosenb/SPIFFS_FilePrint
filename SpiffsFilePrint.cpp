@@ -37,6 +37,10 @@ void SpiffsFilePrint::close() {
 }
 
 void SpiffsFilePrint::flush() {
+    if (!file) {
+        return;
+    }
+
     noInterrupts();
     char fileWriteBuf[nextWritePos];
     memcpy(&fileWriteBuf, &buf, nextWritePos + 1);
@@ -52,10 +56,14 @@ void SpiffsFilePrint::flush() {
 }
 
 size_t SpiffsFilePrint::write(uint8_t n) {
-    char c = n;
+    const char c = n;
     if (alsoPrintTo != NULL) {
         alsoPrintTo->print(c);
     }
+    if (!file) {
+        return 1;
+    }
+
     noInterrupts();
     buf[nextWritePos++] = c;
     if (nextWritePos == BUFFER_SIZE - 2 || c == '\n') {
